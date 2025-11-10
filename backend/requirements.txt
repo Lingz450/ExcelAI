@@ -7,8 +7,8 @@ xlsxwriter==3.1.9
 numpy==1.26.2
 
 # API (if running as separate service)
-fastapi==0.109.0
-uvicorn==0.25.0
+fastapi==0.121.1
+uvicorn==0.38.0
 python-multipart==0.0.6
 
 # Utilities
