@@ -9,7 +9,7 @@ numpy==1.26.2
 # API (if running as separate service)
 fastapi==0.109.0
 uvicorn==0.25.0
-python-multipart==0.0.6
+python-multipart==0.0.20
 
 # Utilities
 python-dateutil==2.8.2
