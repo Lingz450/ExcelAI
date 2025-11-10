@@ -1,7 +1,7 @@
 # Excel Processing
-openpyxl==3.1.2
-pandas==2.1.4
-xlsxwriter==3.1.9
+openpyxl==3.1.5
+pandas==2.3.3
+xlsxwriter==3.2.9
 
 # Data Processing
 numpy==1.26.2
