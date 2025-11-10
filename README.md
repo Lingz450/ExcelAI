@@ -1,345 +1,260 @@
-# ExcelAI - Your AI-Powered Excel Assistant
+# 🤖 ExcelAI - Your AI-Powered Excel Assistant
 
-![ExcelAI Logo](https://via.placeholder.com/150x150/217346/FFFFFF?text=ExcelAI)
+<div align="center">
 
-**Excel, but actually friendly.** Type what you need, upload your file, and let AI handle the complexity.
+![ExcelAI Banner](https://img.shields.io/badge/ExcelAI-AI--Powered-217346?style=for-the-badge&logo=microsoftexcel&logoColor=white)
 
-## 🎉 **STATUS: FULLY IMPLEMENTED - ALL FEATURES COMPLETE!**
+[![Next.js](https://img.shields.io/badge/Next.js-14.0-000000?style=flat&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.3-3178C6?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![GitHub Stars](https://img.shields.io/github/stars/Lingz450/ExcelAI?style=social)](https://github.com/Lingz450/ExcelAI/stargazers)
 
-- ✅ **80+ Excel formulas** documented
-- ✅ **22+ automation recipes** ready
-- ✅ **Full backend integration** with FastAPI
-- ✅ **OpenAI GPT-4** smart parsing
-- ✅ **Stripe payments** integrated
-- ✅ **PostgreSQL database** configured
-- ✅ **File preview** before processing
-- ✅ **Progress tracking** in real-time
-- ✅ **5,000+ lines** of production code
+**Excel, but actually friendly.** Type what you need in plain English, upload your file, and let AI handle the complexity.
 
-## 🎯 Vision
+[🚀 Live Demo](https://excelai.vercel.app) • [📖 Documentation](./QUICK_START.md) • [🎯 Features](#features) • [💡 Examples](#examples)
 
-Excel is too complicated for most people. ExcelAI makes it simple by letting you describe what you want in plain English and handling all the technical details automatically.
+</div>
 
-## ✨ Key Features
+---
 
-### 🤖 Natural Language Processing
-- Type commands in plain English
-- "Split names, remove duplicates, create pivot by region"
-- AI understands context and asks clarifying questions
+## ✨ Features
 
-### 📊 Formula Atlas
-- 500+ Excel functions explained with examples
-- Beginner to advanced levels
-- Pitfalls, alternatives, and performance notes
-- Interactive examples you can copy
+### 🎯 Core Features
+- **🗣️ Natural Language Processing** - "Remove duplicates and create pivot by region" - Done!
+- **🤖 Multi-AI Integration** - Powered by OpenAI GPT-4, Google Gemini, and more
+- **📊 Smart Excel Processing** - Handles .xlsx, .xlsm, .xls files up to 100MB
+- **⚡ Real-time Progress Tracking** - See exactly what's happening to your file
+- **🔄 One-Click Undo** - Every change is reversible with full audit trail
+- **📦 Recipe Gallery** - 22+ pre-built automations for common tasks
 
-### 🎯 Recipe Gallery
-- Pre-built automations for common tasks
-- One-click solutions for:
-  - Data cleaning
-  - Pivot tables
-  - VLOOKUP → XLOOKUP conversion
-  - Phone number standardization
-  - Date formatting
-  - And much more...
+### 📚 Formula Database
+- **80+ Excel Functions** - Complete reference with examples
+- **Real-world Examples** - Practical use cases for each formula
+- **Common Pitfalls** - Learn what to avoid
+- **Alternative Solutions** - Multiple ways to solve problems
 
-### 🔒 Privacy & Security
-- Files encrypted during upload
-- Auto-deleted after 24 hours
-- Never used for AI training
-- Full audit trail of changes
-- One-click undo
+### 🔐 Enterprise Features
+- **🔒 End-to-End Encryption** - Your data is always secure
+- **👥 OAuth Integration** - Sign in with Google/Microsoft
+- **💳 Stripe Payments** - Seamless subscription management
+- **📊 Usage Analytics** - Track your automation history
+- **🌐 Multi-language Support** - Works globally
 
-### ⚡ Modern Excel Functions
-- Uses Excel 365's latest features
-- XLOOKUP, FILTER, LET, LAMBDA
-- Dynamic arrays and spill ranges
-- Power Query integrations
+### 🎨 User Experience
+- **🌓 Dark Mode** - Easy on the eyes
+- **📱 Responsive Design** - Works on all devices
+- **⚡ Lightning Fast** - Optimized for performance
+- **♿ Accessible** - WCAG 2.1 compliant
+
+---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-```bash
-Node.js 18+ and npm
-Python 3.9+ (for backend processing)
-```
+
+- **Node.js** 18+ and npm
+- **Python** 3.11+
+- **Git**
 
 ### Installation
 
-1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/excelai.git
-cd excelai
-```
+# Clone the repository
+git clone https://github.com/Lingz450/ExcelAI.git
+cd ExcelAI
 
-2. **Install frontend dependencies**
-```bash
+# Install frontend dependencies
 npm install
-```
 
-3. **Set up environment variables**
-```bash
-cp .env.example .env.local
-```
-
-Edit `.env.local` with your configuration:
-```env
-# Database
-DATABASE_URL="postgresql://user:password@localhost:5432/excelai"
-
-# NextAuth
-NEXTAUTH_URL="http://localhost:3000"
-NEXTAUTH_SECRET="your-secret-key"
-
-# OAuth (optional)
-GOOGLE_CLIENT_ID=""
-GOOGLE_CLIENT_SECRET=""
-
-# OpenAI (for AI features)
-OPENAI_API_KEY=""
-```
-
-4. **Install Python backend dependencies**
-```bash
+# Install backend dependencies
 cd backend
 pip install -r requirements.txt
 cd ..
+
+# Set up environment variables
+cp .env.example .env.local
+# Edit .env.local with your API keys
+
+# Run development servers
+npm run dev        # Frontend (http://localhost:3000)
+python backend/api.py  # Backend (http://localhost:8000)
 ```
 
-5. **Run development server**
-```bash
-npm run dev
+### Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+# AI Services
+OPENAI_API_KEY=your_openai_key_here
+GEMINI_API_KEY=your_gemini_key_here
+
+# Authentication (NextAuth.js)
+NEXTAUTH_SECRET=your_secret_here
+NEXTAUTH_URL=http://localhost:3000
+
+# OAuth Providers
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+MICROSOFT_CLIENT_ID=your_microsoft_client_id
+MICROSOFT_CLIENT_SECRET=your_microsoft_client_secret
+
+# Database
+DATABASE_URL=postgresql://user:password@localhost:5432/excelai
+
+# Stripe (Optional)
+STRIPE_SECRET_KEY=your_stripe_secret_key
+STRIPE_WEBHOOK_SECRET=your_stripe_webhook_secret
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=your_stripe_publishable_key
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the app.
+---
 
-## 📚 Usage Examples
+## 💡 Examples
 
-### Basic Workflow
-
-1. **Upload your Excel file**
-   - Drag & drop or click to browse
-   - Supports .xlsx, .xlsm, .xls up to 100MB
-
-2. **Describe what you need**
-   ```
-   "Split Full Name column into First and Last Name, 
-   remove duplicates, and create a pivot table showing 
-   sales by region and month"
-   ```
-
-3. **Review the plan**
-   - See exactly what will be done
-   - Approve or modify
-
-4. **Download result**
-   - Get your transformed file
-   - View detailed change log
-
-### Common Tasks
-
-**Clean messy data:**
+### Example 1: Data Cleaning
 ```
-Remove extra spaces, fix capitalization, and delete duplicate rows
+Input: "Clean all text fields, remove duplicates, and standardize phone numbers to +234 format"
+Result: ✅ Cleaned 1,247 cells, removed 23 duplicates, standardized 456 phone numbers
 ```
 
-**Split names:**
+### Example 2: Advanced Analysis
 ```
-Split Full Name into First Name and Last Name
-```
-
-**Create pivot tables:**
-```
-Create pivot table with Region as rows, Month as columns, 
-and sum of Sales as values
+Input: "Create a pivot table showing sales by region and month, calculate percentage change, and highlight top performers"
+Result: ✅ Created pivot table, added 12 calculated fields, applied conditional formatting
 ```
 
-**Standardize phones:**
+### Example 3: Data Transformation
 ```
-Format all phone numbers as +234-XXX-XXX-XXXX
-```
-
-**Modernize formulas:**
-```
-Convert all VLOOKUP formulas to XLOOKUP with error handling
+Input: "Split Full Name into First and Last Name, extract email domains, and create a summary sheet"
+Result: ✅ Split 890 names, extracted 890 domains, created summary with charts
 ```
 
-## 🏗️ Project Structure
+---
 
-```
-excelai/
-├── app/                    # Next.js app directory
-│   ├── page.tsx           # Home page
-│   ├── workspace/         # Main workspace
-│   ├── formulas/          # Formula atlas
-│   ├── recipes/           # Recipe gallery
-│   └── layout.tsx         # Root layout
-├── components/            # React components
-│   ├── home/             # Landing page components
-│   ├── workspace/        # Workspace UI
-│   ├── formulas/         # Formula atlas UI
-│   ├── recipes/          # Recipe gallery UI
-│   └── ui/               # Reusable UI components
-├── lib/                   # Utilities and data
-│   ├── utils.ts          # Helper functions
-│   ├── formula-data.ts   # Formula database
-│   └── recipe-data.ts    # Recipe database
-├── backend/               # Python Excel processor
-│   ├── excel_processor.py # Core processing engine
-│   └── requirements.txt   # Python dependencies
-├── types/                 # TypeScript types
-└── public/               # Static assets
-```
+## 📖 Documentation
 
-## 🎨 Tech Stack
+- **[📍 Start Here](./START_HERE.md)** - Complete getting started guide
+- **[⚡ Quick Start](./QUICK_START.md)** - 5-minute setup
+- **[🚀 Deployment](./DEPLOYMENT.md)** - Production deployment guide
+- **[🏗️ Architecture](./🚀_ENTERPRISE_BLUEPRINT.md)** - System architecture
+- **[📚 API Reference](./docs/api-reference.md)** - API documentation
+- **[🧪 Testing](./docs/testing.md)** - Testing guide
+- **[🤝 Contributing](./CONTRIBUTING.md)** - How to contribute
+
+---
+
+## 🏗️ Tech Stack
 
 ### Frontend
 - **Framework:** Next.js 14 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
-- **UI Components:** Custom + Framer Motion
-- **State Management:** Zustand
-- **Data Fetching:** TanStack Query
+- **UI Components:** Custom components with Radix UI primitives
+- **State Management:** React Hooks + Context API
+- **Authentication:** NextAuth.js
+- **Payments:** Stripe
 
 ### Backend
-- **Excel Processing:** Python (openpyxl, pandas)
-- **AI Planning:** OpenAI GPT-4 (or local alternative)
-- **File Storage:** S3-compatible (planned)
-- **Database:** PostgreSQL (planned)
+- **Framework:** FastAPI (Python)
+- **Excel Processing:** openpyxl, pandas, xlsxwriter
+- **AI Integration:** OpenAI SDK, Google Generative AI
+- **Database:** PostgreSQL + Prisma ORM
+- **Job Queue:** Bull (Redis-based)
+- **File Storage:** Local (dev), S3/R2 (prod)
 
-## 📖 Formula Atlas
-
-Browse and search 500+ Excel functions organized by category:
-
-- **Lookup & Reference:** XLOOKUP, INDEX/MATCH, VLOOKUP
-- **Text Functions:** TEXTSPLIT, TEXTBEFORE, TEXTAFTER
-- **Dynamic Arrays:** FILTER, SORT, UNIQUE, TAKE, DROP
-- **Logical:** IF, IFS, SWITCH, AND, OR
-- **Math & Stats:** SUMIFS, AVERAGEIFS, COUNTIFS
-- **Date & Time:** EOMONTH, NETWORKDAYS, WORKDAY
-- **Lambda:** LET, LAMBDA, MAP, REDUCE, SCAN
-
-Each formula includes:
-- Syntax and arguments
-- 3 examples (beginner, intermediate, advanced)
-- Common pitfalls
-- Alternative approaches
-- Performance notes
-
-## 🍳 Recipe Gallery
-
-Pre-built automations ready to use:
-
-### Data Cleaning
-- Clean & standardize data
-- Remove near-duplicates
-- Standardize phone numbers
-- Fix date formats
-
-### Transformation
-- Split full names
-- Unpivot wide to long
-- Combine multiple sheets
-- Currency conversion
-
-### Analysis
-- Monthly sales pivot
-- Accounts receivable aging
-- Extract unique values
-- Create summaries
-
-### Modernization
-- VLOOKUP → XLOOKUP conversion
-- Volatile function detection
-- Formula optimization
-
-## 🔐 Security & Privacy
-
-- **Encrypted uploads:** All files encrypted in transit and at rest
-- **Auto-deletion:** Files automatically deleted after 24 hours
-- **No training:** Your data is never used to train AI models
-- **Audit logs:** Complete history of all changes
-- **Reversible:** One-click undo for all operations
-- **SOC 2 ready:** Enterprise-grade security practices
-
-## 🚦 Roadmap
-
-### Phase 1 (MVP) ✅
-- [x] File upload with drag & drop
-- [x] Natural language command input
-- [x] Formula Atlas with 50+ functions
-- [x] Recipe Gallery with 12+ recipes
-- [x] Basic Excel transformations
-
-### Phase 2 (Current)
-- [ ] AI-powered action planning (OpenAI integration)
-- [ ] Real Excel file processing backend
-- [ ] User authentication
-- [ ] Job history and versioning
-- [ ] Diff viewer
-
-### Phase 3 (Next)
-- [ ] Google Drive / OneDrive integration
-- [ ] Power Query support
-- [ ] Collaborative workspaces
-- [ ] Custom recipe creation
-- [ ] API access
-
-### Phase 4 (Future)
-- [ ] Excel add-in
-- [ ] Real-time collaboration
-- [ ] Advanced analytics
-- [ ] Custom AI models
-- [ ] Enterprise features
-
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-### Development
-
-```bash
-# Run dev server
-npm run dev
-
-# Run tests
-npm run test
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-```
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Inspired by the complexity of Excel and the power of AI
-- Built with modern web technologies
-- Designed for both beginners and power users
-
-## 📞 Support
-
-- **Documentation:** [docs.excelai.com](https://docs.excelai.com)
-- **Email:** support@excelai.com
-- **Discord:** [Join our community](https://discord.gg/excelai)
-- **Twitter:** [@ExcelAI](https://twitter.com/excelai)
-
-## 🌟 Why ExcelAI?
-
-> "I used to spend hours on VLOOKUP formulas. Now I just type what I need and ExcelAI builds it perfectly. Game changer for month-end reports."
-> — Sarah Chen, Financial Analyst
-
-> "The Formula Atlas alone is worth it. Finally understand what XLOOKUP actually does. The AI transformations save me 10+ hours weekly."
-> — Michael Okafor, Operations Manager
+### DevOps
+- **Hosting:** Vercel (Frontend), Railway/Render (Backend)
+- **CI/CD:** GitHub Actions
+- **Monitoring:** Sentry, LogRocket
+- **Analytics:** Vercel Analytics
 
 ---
 
-**Made with ❤️ for Excel users everywhere**
+## 🎯 Roadmap
 
-[Get Started](http://localhost:3000/workspace) • [Browse Formulas](http://localhost:3000/formulas) • [View Recipes](http://localhost:3000/recipes)
+### ✅ Completed
+- [x] Natural language AI interpreter
+- [x] Multi-AI integration (OpenAI, Gemini)
+- [x] Formula database (80+ functions)
+- [x] Recipe gallery (22+ automations)
+- [x] OAuth authentication
+- [x] File upload/download
+- [x] Progress tracking
+- [x] Dark mode
 
+### 🚧 In Progress
+- [ ] Real-time collaboration
+- [ ] WebAssembly on-device processing
+- [ ] Advanced data profiling
+- [ ] Version control for workbooks
+
+### 🔮 Future
+- [ ] Mobile apps (iOS/Android)
+- [ ] Excel add-in
+- [ ] API marketplace
+- [ ] AI model fine-tuning
+- [ ] Enterprise SSO
+- [ ] Advanced governance features
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](./CONTRIBUTING.md) for details.
+
+### Quick Contribution Steps:
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **OpenAI** - GPT-4 API
+- **Google** - Gemini AI API
+- **Vercel** - Hosting and deployment
+- **Next.js Team** - Amazing framework
+- **Excel Community** - Inspiration and feedback
+
+---
+
+## 📞 Support
+
+- **📧 Email:** support@excelai.com
+- **💬 Discord:** [Join our community](https://discord.gg/excelai)
+- **🐛 Issues:** [GitHub Issues](https://github.com/Lingz450/ExcelAI/issues)
+- **📖 Docs:** [Documentation](./docs)
+
+---
+
+## 📊 Stats
+
+![GitHub Repo Stars](https://img.shields.io/github/stars/Lingz450/ExcelAI?style=social)
+![GitHub Forks](https://img.shields.io/github/forks/Lingz450/ExcelAI?style=social)
+![GitHub Issues](https://img.shields.io/github/issues/Lingz450/ExcelAI)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Lingz450/ExcelAI)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/Lingz450/ExcelAI)
+
+---
+
+<div align="center">
+
+**Made with ❤️ by [Lingz450](https://github.com/Lingz450)**
+
+⭐ Star us on GitHub — it motivates us a lot!
+
+[Website](https://excelai.com) • [Twitter](https://twitter.com/excelai) • [LinkedIn](https://linkedin.com/company/excelai)
+
+</div>
