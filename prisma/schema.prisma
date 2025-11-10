@@ -1,0 +1,189 @@
+// ExcelAI Database Schema
+// Prisma ORM configuration for PostgreSQL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User Model
+model User {
+  id            String      @id @default(cuid())
+  email         String      @unique
+  name          String?
+  image         String?
+  emailVerified DateTime?
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  subscription  Subscription @default(FREE)
+  
+  // Relations
+  workbooks     Workbook[]
+  jobs          Job[]
+  recipes       CustomRecipe[]
+  
+  @@index([email])
+}
+
+enum Subscription {
+  FREE
+  PRO
+  TEAM
+  ENTERPRISE
+}
+
+// Workbook Model
+model Workbook {
+  id               String   @id @default(cuid())
+  userId           String
+  originalFilename String
+  storageKey       String   // S3 key or file path
+  fileSize         Int
+  uploadedAt       DateTime @default(now())
+  expiresAt        DateTime // Auto-delete timestamp
+  
+  // Metadata
+  sheetCount       Int?
+  rowCount         Int?
+  columnCount      Int?
+  hasFormulas      Boolean  @default(false)
+  hasMergedCells   Boolean  @default(false)
+  
+  // Relations
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  jobs             Job[]
+  
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+// Job Model
+model Job {
+  id              String    @id @default(cuid())
+  userId          String
+  workbookId      String
+  requestText     String    @db.Text
+  status          JobStatus @default(PENDING)
+  plan            Json?     // Action plan as JSON
+  errorMessage    String?   @db.Text
+  startedAt       DateTime  @default(now())
+  finishedAt      DateTime?
+  executionTimeMs Int?
+  
+  // Relations
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workbook        Workbook  @relation(fields: [workbookId], references: [id], onDelete: Cascade)
+  outputs         JobOutput[]
+  logs            JobLog[]
+  
+  @@index([userId])
+  @@index([workbookId])
+  @@index([status])
+  @@index([startedAt])
+}
+
+enum JobStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+// Job Output Model
+model JobOutput {
+  id               String   @id @default(cuid())
+  jobId            String
+  outputStorageKey String   // S3 key for result file
+  diffSummary      Json     // Change summary as JSON
+  version          Int      @default(1)
+  createdAt        DateTime @default(now())
+  
+  // Relations
+  job              Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  
+  @@index([jobId])
+}
+
+// Job Log Model (for debugging and audit)
+model JobLog {
+  id        String   @id @default(cuid())
+  jobId     String
+  timestamp DateTime @default(now())
+  level     LogLevel
+  message   String   @db.Text
+  details   Json?
+  
+  // Relations
+  job       Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  
+  @@index([jobId])
+  @@index([timestamp])
+}
+
+enum LogLevel {
+  INFO
+  WARNING
+  ERROR
+  DEBUG
+}
+
+// Custom Recipe Model (user-created)
+model CustomRecipe {
+  id          String   @id @default(cuid())
+  userId      String
+  title       String
+  description String   @db.Text
+  category    String
+  planTemplate Json    // Action plan template
+  tags        String[]
+  isPublic    Boolean  @default(false)
+  usageCount  Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([isPublic])
+  @@index([category])
+}
+
+// Usage Tracking (for rate limiting and billing)
+model Usage {
+  id          String   @id @default(cuid())
+  userId      String
+  date        DateTime @default(now()) @db.Date
+  jobsRun     Int      @default(0)
+  filesProcessed Int   @default(0)
+  bytesProcessed BigInt @default(0)
+  
+  @@unique([userId, date])
+  @@index([userId])
+  @@index([date])
+}
+
+// API Key Model (for programmatic access)
+model ApiKey {
+  id          String   @id @default(cuid())
+  userId      String
+  key         String   @unique
+  name        String
+  lastUsedAt  DateTime?
+  createdAt   DateTime @default(now())
+  expiresAt   DateTime?
+  isActive    Boolean  @default(true)
+  
+  // Rate limiting
+  requestCount Int     @default(0)
+  requestLimit Int     @default(10000) // Per month
+  
+  @@index([userId])
+  @@index([key])
+}
+
